@@ -22,6 +22,10 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay(); //Needed for BP begin play!
+
+	auto TankName = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: TANK C++ BEGIN PLAY"), *TankName)
+
 }
 
 void ATank::Fire()
