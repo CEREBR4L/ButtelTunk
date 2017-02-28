@@ -3,6 +3,7 @@
 #include "ButtelTunk.h"
 #include "Tank.h"
 #include "TankAIController.h"
+//Depends on movement component via pathfinding system
 
 void ATankAIController::BeginPlay()
 {
