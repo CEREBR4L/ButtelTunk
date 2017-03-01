@@ -5,8 +5,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;
-
 UCLASS()
 class BUTTELTUNK_API ATankAIController : public AAIController
 {
@@ -16,7 +14,7 @@ class BUTTELTUNK_API ATankAIController : public AAIController
 private:
 	void BeginPlay() override;
 
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	//How close can the AI tank get to the player.
 	float AcceptanceRadius = 3000;
