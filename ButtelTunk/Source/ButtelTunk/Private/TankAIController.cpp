@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ButtelTunk.h"
-#include "Tank.h"
+#include "TankAimingComponent.h"
 #include "TankAIController.h"
 //Depends on movement component via pathfinding system
 
@@ -15,21 +15,21 @@ void ATankAIController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	ControlledTank = Cast<ATank>(GetPawn());
+	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
+	auto ControlledTank = GetPawn();
 
-	if(ensure(PlayerTank))
-	{
-		//move towards player
-		MoveToActor(PlayerTank, AcceptanceRadius);
+	if (!ensure(PlayerTank && ControlledTank)) { return; }
 
-		//Aim Towards player
-		ControlledTank->AimAt(PlayerTank->GetActorLocation());
+	//move towards player
+	MoveToActor(PlayerTank, AcceptanceRadius);
 
-		//Fire if ready
-		ControlledTank->Fire(); // limit fire rate.
+	//Aim Towards player
+	auto AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
+	if (!ensure(AimingComponent)) { return; }
+	AimingComponent->AimAt(PlayerTank->GetActorLocation());
 
-	}
+	//Fix firing
+	//GetPawn()->Fire(); // limit fire rate.
 
 }
 
