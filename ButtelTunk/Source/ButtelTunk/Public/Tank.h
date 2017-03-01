@@ -6,7 +6,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankTurret;
 class AProjectile;
 
 UCLASS()
@@ -27,10 +26,10 @@ private:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	TSubclassOf<AProjectile>ProjectileBlueprint;
+	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float LaunchSpeed = 6000.f; //reasonable default
+	float LaunchSpeed = 6000; //reasonable default
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSeconds = 3;

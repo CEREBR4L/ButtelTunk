@@ -25,8 +25,6 @@ class BUTTELTUNK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UTankAimingComponent();
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
@@ -39,9 +37,11 @@ protected:
 	EFiringState FiringState = EFiringState::Aiming;
 
 private:
+	// Sets default values for this component's properties
+	UTankAimingComponent();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float LaunchSpeed = 6000.f; //reasonable default
+	float LaunchSpeed = 6000; //reasonable default
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;

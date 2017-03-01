@@ -8,12 +8,11 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
-void ATankAIController::Tick(float DeltaSeconds) 
+void ATankAIController::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaSeconds);
+	Super::Tick(DeltaTime);
 
 	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
 	auto ControlledTank = GetPawn();
@@ -28,8 +27,8 @@ void ATankAIController::Tick(float DeltaSeconds)
 	if (!ensure(AimingComponent)) { return; }
 	AimingComponent->AimAt(PlayerTank->GetActorLocation());
 
-	//Fix firing
-	//GetPawn()->Fire(); // limit fire rate.
+	//TODO Fix firing
+	//ControlledTank->Fire(); // limit fire rate.
 
 }
 
