@@ -12,6 +12,14 @@ ATank::ATank()
 
 }
 
+float ATank::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
+{
+	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
+	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
+	UE_LOG(LogTemp, Warning, TEXT("Damage Ammount: %f  //  Damage To Apply: %i"), DamageAmount, DamageToApply)
 
+	CurrentHealth -= DamageToApply;
+	if(CurrentHealth <= 0) { UE_LOG(LogTemp, Warning, TEXT("Tank is kill.")) }
 
-
+	return DamageToApply;
+}
