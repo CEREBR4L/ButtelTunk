@@ -3,7 +3,6 @@
 #include "ButtelTunk.h"
 #include "Tank.h"
 
-
 // Sets default values
 ATank::ATank()
 {
@@ -22,4 +21,9 @@ float ATank::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent, AC
 	if(CurrentHealth <= 0) { UE_LOG(LogTemp, Warning, TEXT("Tank is kill.")) }
 
 	return DamageToApply;
+}
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
 }
