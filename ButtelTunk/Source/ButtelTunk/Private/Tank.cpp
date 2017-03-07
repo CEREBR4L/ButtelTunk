@@ -18,7 +18,10 @@ float ATank::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent, AC
 	UE_LOG(LogTemp, Warning, TEXT("Damage Ammount: %f  //  Damage To Apply: %i"), DamageAmount, DamageToApply)
 
 	CurrentHealth -= DamageToApply;
-	if(CurrentHealth <= 0) { UE_LOG(LogTemp, Warning, TEXT("Tank is kill.")) }
+	if(CurrentHealth <= 0)
+	{ 
+		OnDeath.Broadcast();
+	}
 
 	return DamageToApply;
 }
